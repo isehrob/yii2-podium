@@ -92,7 +92,9 @@ class Forum extends ForumActiveRecord
      */
     public static function verify($categoryId = null, $id = null, $slug = null, $guest = true)
     {
-        if (!is_numeric($categoryId) || $categoryId < 1 || !is_numeric($id) || $id < 1 || empty($slug)) {
+        // Notice (isehrob): removed `is_numeric` check of params because type of them is string
+        // so we can't go further with this kind of validation with string typed params
+        if ($categoryId == null || $id == null) {
             return null;
         }
         return static::find()->joinWith(['category' => function ($query) use ($guest) {

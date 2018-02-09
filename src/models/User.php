@@ -80,9 +80,12 @@ class User extends UserActiveRecord
     public function rules()
     {
         $rules = [
-            [['username', 'email', 'password', 'passwordRepeat', 'tos'], 'required', 'except' => ['account']],
-            ['currentPassword', 'required'],
-            ['currentPassword', 'validateCurrentPassword'],
+            // Notice (isehrob): removed password field from required fields because user component is inherited
+            // and User model of the main application doesn't have password field and users are authenticated by
+            // third party auth system with auth2.0
+            [['username', 'email', /* 'password', 'passwordRepeat', */ 'tos'], 'required', 'except' => ['account']],
+//            ['currentPassword', 'required'],
+//            ['currentPassword', 'validateCurrentPassword'],
             [['email', 'new_email'], 'email', 'message' => Yii::t('podium/view', 'This is not a valid e-mail address.')],
             ['email', 'unique'],
             ['new_email', 'unique', 'targetAttribute' => 'email'],

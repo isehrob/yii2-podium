@@ -61,6 +61,7 @@ class BaseController extends YiiController
         if (!parent::beforeAction($action)) {
             return false;
         }
+
         $warnings = Yii::$app->session->getFlash('warning');
         $maintenance = $this->maintenanceCheck($action, $warnings);
         if ($maintenance !== false) {

@@ -114,7 +114,7 @@ $this->registerJs("var anchor = window.location.hash; if (anchor.match(/^#post[0
         <ul class="list-inline">
 <?php if (Podium::getInstance()->user->isGuest): ?>
             <li><a href="<?= Url::to(['account/login']) ?>" class="btn btn-primary btn-sm"><?= Yii::t('podium/view', 'Sign in to reply') ?></a></li>
-            <li><a href="<?= Url::to(['account/register']) ?>" class="btn btn-success btn-sm"><?= Yii::t('podium/view', 'Register new account') ?></a></li>
+<!--            <li><a href="--><?//= Url::to(['account/register']) ?><!--" class="btn btn-success btn-sm">--><?//= Yii::t('podium/view', 'Register new account') ?><!--</a></li>-->
 <?php else: ?>
 <?php if (User::can(Rbac::PERM_CREATE_THREAD)): ?>
             <li><a href="<?= Url::to(['forum/new-thread', 'cid' => $thread->forum->category->id, 'fid' => $thread->forum_id]) ?>" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> <?= Yii::t('podium/view', 'Create new thread') ?></a></li>
@@ -226,7 +226,7 @@ if ($thread->locked) {
     <br>
     <div class="col-sm-12 text-right">
         <a href="<?= Url::to(['account/login']) ?>" class="btn btn-primary"><?= Yii::t('podium/view', 'Sign in to reply') ?></a>
-        <a href="<?= Url::to(['account/register']) ?>" class="btn btn-success"><?= Yii::t('podium/view', 'Register new account') ?></a>
+<!--        <a href="--><?//= Url::to(['account/register']) ?><!--" class="btn btn-success">--><?//= Yii::t('podium/view', 'Register new account') ?><!--</a>-->
     </div>
 </div>
 <?php endif; ?>

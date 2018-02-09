@@ -109,7 +109,9 @@ class ForumController extends ForumPostController
      */
     public function actionCategory($id = null, $slug = null)
     {
-        if (!is_numeric($id) || $id < 1 || empty($slug)) {
+        // Notice (isehrob): removed `is_numeric` check of id because type of id is string
+        // so we can't go further with this kind of validation with string ids
+        if ($id == null) {
             $this->error(Yii::t('podium/flash', 'Sorry! We can not find the category you are looking for.'));
             return $this->redirect(['forum/index']);
         }
@@ -185,7 +187,9 @@ class ForumController extends ForumPostController
      */
     public function actionLast($id = null)
     {
-        if (!is_numeric($id) || $id < 1) {
+        // Notice (isehrob): removed `is_numeric` check of id because type of id is string
+        // so we can't go further with this kind of validation with string ids
+        if ($id < 1) {
             $this->error(Yii::t('podium/flash', 'Sorry! We can not find the thread you are looking for.'));
             return $this->redirect(['forum/index']);
         }
@@ -228,7 +232,9 @@ class ForumController extends ForumPostController
      */
     public function actionShow($id = null)
     {
-        if (!is_numeric($id) || $id < 1) {
+        // Notice (isehrob): removed `is_numeric` check of id because type of id is string
+        // so we can't go further with this kind of validation with string ids
+        if ($id < 1) {
             $this->error(Yii::t('podium/flash', 'Sorry! We can not find the post you are looking for.'));
             return $this->redirect(['forum/index']);
         }

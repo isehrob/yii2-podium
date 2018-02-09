@@ -33,13 +33,8 @@ Installation & configuration
 
 Follow instructions at [Podium wiki](https://github.com/bizley/yii2-podium/wiki).
 
-<<<<<<< HEAD
 > Warning: This is BETA version of Podium.
 > Any part of this module can change without warning.
-=======
-> Warning: This is BETA version of Podium.  
-> Any part of this module can change without warning.  
->>>>>>> 16b3f831da92a0850f196a690ba2d45fce207ba7
 > Please report all issues and suggestions [here](https://github.com/bizley/yii2-podium/issues).
 
 Demo
@@ -73,8 +68,9 @@ Tests
 For Codeception tests run:
 
     composer exec -v -- codecept -c vendor/bizley/podium run
-<<<<<<< HEAD
-=======
 
-More tests coming soon.
->>>>>>> 16b3f831da92a0850f196a690ba2d45fce207ba7
+Changes by @isehrob
+----------
+- removed `is_numerical` check of id's in controllers and other places
+- changed breadcrumb display: We have only one category so we do not want to list categories
+need to remove any possibility to create other categories

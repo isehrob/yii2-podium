@@ -11,10 +11,18 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 
+$_breadcrumbs = isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [];
+$breadcrumbs = [];
+foreach ($_breadcrumbs as $value){
+    if(isset($value['url']) && $value['url'][0] == 'forum/category'){
+        continue;
+    }
+    array_push($breadcrumbs, $value);
+}
 ?>
 <div class="row">
     <div class="hidden-xs col-sm-<?= isset($this->params['no-search']) && $this->params['no-search'] === true ? '12' : '9' ?>">
-        <?= Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []]); ?>
+        <?= Breadcrumbs::widget(['links' => $breadcrumbs]); ?>
     </div>
 <?php if (!isset($this->params['no-search']) || $this->params['no-search'] !== true): ?>
     <div class="col-sm-3">

@@ -75,9 +75,9 @@ if (Podium::getInstance()->user->isGuest) {
 }
 
 NavBar::begin([
-    'brandLabel' => $podiumModule->podiumConfig->get('name'),
-    'brandUrl' => ['forum/index'],
-    'options' => ['class' => 'navbar-inverse navbar-default', 'id' => 'top'],
+//    'brandLabel' => $podiumModule->podiumConfig->get('name'),
+//    'brandUrl' => ['forum/index'],
+    'options' => ['class' => 'navbar', 'id' => 'top'],
     'innerContainerOptions' => ['class' => 'container-fluid',]
 ]);
 echo Nav::widget([

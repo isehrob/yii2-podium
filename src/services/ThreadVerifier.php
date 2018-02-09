@@ -45,7 +45,9 @@ class ThreadVerifier extends Component
         if (is_numeric($this->categoryId) && $this->categoryId >= 1
                 && is_numeric($this->forumId) && $this->forumId >= 1
                 && is_numeric($this->threadId) && $this->threadId >= 1
-                && !empty($this->threadSlug)) {
+                // Notice (isehrob): removed slug emptiness check of because
+                // slug is empty so we can't go further with this kind of validation
+                /* && !empty($this->threadSlug) */) {
             return true;
         }
         return false;
