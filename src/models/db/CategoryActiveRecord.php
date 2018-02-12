@@ -30,7 +30,7 @@ class CategoryActiveRecord extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%podium_category}}';
+        return 'forum.podium_category';
     }
 
     /**

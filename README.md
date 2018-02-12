@@ -74,3 +74,8 @@ Changes by @isehrob
 - removed `is_numerical` check of id's in controllers and other places
 - changed breadcrumb display: We have only one category so we do not want to list categories
 need to remove any possibility to create other categories
+- statically added `forum` psql schema name wherever it was necessary: 
+    - in `\models\db`
+    - in `PodiumComponent`
+    - in `PodiumConfig`
+    - etc.

@@ -90,7 +90,7 @@ class ThreadActiveRecord extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%podium_thread}}';
+        return 'forum.podium_thread';
     }
 
     /**

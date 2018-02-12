@@ -88,10 +88,13 @@ class PodiumComponent extends Component
                 : [
                     'class' => 'yii\rbac\DbManager',
                     'db' => $this->module->db,
-                    'itemTable' => '{{%podium_auth_item}}',
-                    'itemChildTable' => '{{%podium_auth_item_child}}',
-                    'assignmentTable' => '{{%podium_auth_assignment}}',
-                    'ruleTable' => '{{%podium_auth_rule}}',
+//                    'itemTable' => '{{%podium_auth_item}}',
+//                    'itemChildTable' => '{{%podium_auth_item_child}}',
+//                    'assignmentTable' => '{{%podium_auth_assignment}}',
+                    'itemTable' => 'forum.podium_auth_item',
+                    'itemChildTable' => 'forum.podium_auth_item_child',
+                    'assignmentTable' => 'forum.podium_auth_assignment',
+                    'ruleTable' => 'forum.podium_auth_rule',
                     'cache' => $this->module->cache
                 ]);
     }

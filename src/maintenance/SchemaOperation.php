@@ -406,7 +406,8 @@ class SchemaOperation extends Component
      */
     public function getTableName($name)
     {
-        return '{{%' . $this->_prefix . $name . '}}';
+//        return '{{%' . $this->_prefix . $name . '}}';
+        return 'forum.'. $this->_prefix . $name;
     }
 
     /**

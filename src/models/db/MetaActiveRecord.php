@@ -32,7 +32,7 @@ class MetaActiveRecord extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%podium_user_meta}}';
+        return 'forum.podium_user_meta';
     }
 
     /**

@@ -22,7 +22,7 @@ class ModActiveRecord extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%podium_moderator}}';
+        return 'forum.podium_moderator';
     }
 
     /**

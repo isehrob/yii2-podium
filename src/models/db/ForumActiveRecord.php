@@ -35,7 +35,7 @@ class ForumActiveRecord extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%podium_forum}}';
+        return 'forum.podium_forum';
     }
 
     /**

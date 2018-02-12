@@ -23,6 +23,6 @@ class ThreadViewActiveRecord extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%podium_thread_view}}';
+        return 'forum.podium_thread_view';
     }
 }

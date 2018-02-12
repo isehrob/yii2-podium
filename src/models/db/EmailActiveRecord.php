@@ -35,7 +35,7 @@ class EmailActiveRecord extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%podium_email}}';
+        return 'forum.podium_email';
     }
 
     /**

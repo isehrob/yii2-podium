@@ -23,7 +23,7 @@ class PollAnswerActiveRecord extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%podium_poll_answer}}';
+        return 'forum.podium_poll_answer';
     }
 
     /**

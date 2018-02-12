@@ -45,7 +45,7 @@ class MessageReceiverActiveRecord extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%podium_message_receiver}}';
+        return 'forum.podium_message_receiver';
     }
 
     /**

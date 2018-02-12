@@ -58,7 +58,7 @@ abstract class UserActiveRecord extends ActiveRecord implements IdentityInterfac
      */
     public static function tableName()
     {
-        return '{{%podium_user}}';
+        return 'forum.podium_user';
     }
 
     /**
