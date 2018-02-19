@@ -78,4 +78,5 @@ need to remove any possibility to create other categories
     - in `\models\db`
     - in `PodiumComponent`
     - in `PodiumConfig`
+    - in `Post:insertWord`
     - etc.
