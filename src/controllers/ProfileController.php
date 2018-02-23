@@ -10,6 +10,7 @@ use bizley\podium\models\Meta;
 use bizley\podium\models\Subscription;
 use bizley\podium\models\User;
 use bizley\podium\Podium;
+use bizley\podium\rbac\Rbac;
 use Yii;
 use yii\helpers\FileHelper;
 use yii\helpers\Html;
@@ -32,17 +33,24 @@ class ProfileController extends BaseController
      */
     public function behaviors()
     {
+        // NOTICE: decided that this controller will be accessible for admin
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'denyCallback' => function ($rule, $action) {
-                    return $this->redirect(['account/login']);
-                },
+//                'denyCallback' => function ($rule, $action) {
+//                    return $this->redirect(['account/login']);
+//                },
+                'ruleConfig' => ['class' => 'bizley\podium\filters\PermissionDeniedRule'],
                 'rules' => [
                     ['class' => 'bizley\podium\filters\InstallRule'],
+//                    [
+//                        'allow' => true,
+//                        'roles' => ['@'],
+//                    ],
                     [
+                        'class' => 'bizley\podium\filters\PodiumRoleRule',
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => [Rbac::ROLE_ADMIN]
                     ],
                 ],
             ],

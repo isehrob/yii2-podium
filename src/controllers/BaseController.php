@@ -67,10 +67,11 @@ class BaseController extends YiiController
         if ($maintenance !== false) {
             return $maintenance;
         }
-        $email = $this->emailCheck($warnings);
-        if ($email !== false) {
-            return $email;
-        }
+        // TODO: emailCheck is not needed yet
+//        $email = $this->emailCheck($warnings);
+//        if ($email !== false) {
+//            return $email;
+//        }
         $upgrade = $this->upgradeCheck($warnings);
         if ($upgrade !== false) {
             return $upgrade;
@@ -213,9 +214,13 @@ class BaseController extends YiiController
                     if (!User::createInheritedAccount()) {
                         throw new Exception('There was an error while creating inherited user account. Podium can not run with the current configuration. Please contact administrator about this problem.');
                     }
-                    $this->success(Yii::t('podium/flash', 'Hey! Your new forum account has just been automatically created! Go to {link} to complement it.', [
-                        'link' => Html::a(Yii::t('podium/view', 'Profile'), ['profile/details'])
-                    ]));
+                    // TODO: cousing an exception, need to do something
+//                    $this->success(
+//                            Yii::t('podium/flash', 'Hey! Your new forum account has just been automatically created!
+//                                Go to {link} to complement it.', [
+//                                'link' => Html::a(Yii::t('podium/view', 'Profile'), ['profile/details'])
+//                            ])
+//                        );
                 }
                 if ($user && $user->status == User::STATUS_BANNED) {
                     return $this->redirect(['forum/ban']);

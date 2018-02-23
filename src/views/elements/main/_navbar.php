@@ -49,26 +49,30 @@ if (Podium::getInstance()->user->isGuest) {
         'url' => ['members/index'],
         'active' => $this->context->id == 'members'
     ];
-    $items[] = [
-        'label' => Yii::t('podium/view', 'Profile ({name})', ['name' => $podiumUser->podiumName])
-                    . ($subscriptionCount ? ' ' . Html::tag('span', $subscriptionCount, ['class' => 'badge']) : ''),
-        'url' => ['profile/index'],
-        'items' => [
-            ['label' => Yii::t('podium/view', 'My Profile'), 'url' => ['profile/index']],
-            ['label' => Yii::t('podium/view', 'Account Details'), 'url' => ['profile/details']],
-            ['label' => Yii::t('podium/view', 'Forum Details'), 'url' => ['profile/forum']],
-            ['label' => Yii::t('podium/view', 'Subscriptions'), 'url' => ['profile/subscriptions']],
-        ]
-    ];
-    $items[] = [
-        'label' => Yii::t('podium/view', 'Messages') . ($messageCount ? ' ' . Html::tag('span', $messageCount, ['class' => 'badge']) : ''),
-        'url' => ['messages/inbox'],
-        'items' => [
-            ['label' => Yii::t('podium/view', 'Inbox'), 'url' => ['messages/inbox']],
-            ['label' => Yii::t('podium/view', 'Sent'), 'url' => ['messages/sent']],
-            ['label' => Yii::t('podium/view', 'New Message'), 'url' => ['messages/new']],
-        ]
-    ];
+    // NOTICE: decided not to show for simple users
+    // because we already have a profile for them on the site
+    if (User::can(Rbac::ROLE_ADMIN)) {
+        $items[] = [
+            'label' => Yii::t('podium/view', 'Profile ({name})', ['name' => $podiumUser->podiumName])
+                        . ($subscriptionCount ? ' ' . Html::tag('span', $subscriptionCount, ['class' => 'badge']) : ''),
+            'url' => ['profile/index'],
+            'items' => [
+                ['label' => Yii::t('podium/view', 'My Profile'), 'url' => ['profile/index']],
+                ['label' => Yii::t('podium/view', 'Account Details'), 'url' => ['profile/details']],
+                ['label' => Yii::t('podium/view', 'Forum Details'), 'url' => ['profile/forum']],
+                ['label' => Yii::t('podium/view', 'Subscriptions'), 'url' => ['profile/subscriptions']],
+            ]
+        ];
+        $items[] = [
+            'label' => Yii::t('podium/view', 'Messages') . ($messageCount ? ' ' . Html::tag('span', $messageCount, ['class' => 'badge']) : ''),
+            'url' => ['messages/inbox'],
+            'items' => [
+                ['label' => Yii::t('podium/view', 'Inbox'), 'url' => ['messages/inbox']],
+                ['label' => Yii::t('podium/view', 'Sent'), 'url' => ['messages/sent']],
+                ['label' => Yii::t('podium/view', 'New Message'), 'url' => ['messages/new']],
+            ]
+        ];
+    }
     if ($podiumModule->userComponent === true) {
         $items[] = ['label' => Yii::t('podium/view', 'Sign out'), 'url' => ['profile/logout'], 'linkOptions' => ['data-method' => 'post']];
     }
