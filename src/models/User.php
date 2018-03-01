@@ -725,7 +725,9 @@ class User extends UserActiveRecord
                 $newUser->inherited_id = Podium::getInstance()->user->id;
                 $newUser->status = self::STATUS_ACTIVE;
                 $newUser->role = self::ROLE_MEMBER;
-                $newUser->generateUsername();
+                $newUser->username = Podium::getInstance()->user->identity->username;
+                // NOTICE: don't need this because we've already had users with username
+//                $newUser->generateUsername();
                 if (!$newUser->save()) {
                     throw new Exception('Account creating error');
                 }
@@ -776,6 +778,36 @@ class User extends UserActiveRecord
         }
         return $cache;
     }
+
+//    /**
+//     * Returns list of most active users.
+//     * @param string $query
+//     * @return array
+//     * @since 0.2
+//     */
+//    public static function getActiveUsers($query = null)
+//    {
+//
+//        $cache = Podium::getInstance()->podiumCache->getElement('users.activelist', $query);
+//        if ($cache === false) {
+//            $activeUsers = static::find()->where(['and',
+//                ['status' => self::STATUS_ACTIVE],
+//                ['!=', 'id', static::loggedId()],
+//                ['like', 'username', $query]
+//            ]);
+//            $users->orderBy(['username' => SORT_ASC, 'id' => SORT_ASC]);
+//            $results = ['results' => []];
+//            foreach ($users->each() as $user) {
+//                $results['results'][] = ['id' => $user->id, 'text' => $user->getPodiumTag(true)];
+//            }
+//            if (empty($results['results'])) {
+//                return Json::encode(['results' => []]);
+//            }
+//            $cache = Json::encode($results);
+//            Podium::getInstance()->podiumCache->setElement('members.fieldlist', $query, $cache);
+//        }
+//        return $cache;
+//    }
 
     /**
      * Updates ignore status for the user.
