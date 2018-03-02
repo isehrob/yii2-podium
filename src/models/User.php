@@ -779,35 +779,30 @@ class User extends UserActiveRecord
         return $cache;
     }
 
-//    /**
-//     * Returns list of most active users.
-//     * @param string $query
-//     * @return array
-//     * @since 0.2
-//     */
-//    public static function getActiveUsers($query = null)
-//    {
-//
-//        $cache = Podium::getInstance()->podiumCache->getElement('users.activelist', $query);
-//        if ($cache === false) {
-//            $activeUsers = static::find()->where(['and',
-//                ['status' => self::STATUS_ACTIVE],
-//                ['!=', 'id', static::loggedId()],
-//                ['like', 'username', $query]
-//            ]);
-//            $users->orderBy(['username' => SORT_ASC, 'id' => SORT_ASC]);
-//            $results = ['results' => []];
-//            foreach ($users->each() as $user) {
-//                $results['results'][] = ['id' => $user->id, 'text' => $user->getPodiumTag(true)];
-//            }
-//            if (empty($results['results'])) {
-//                return Json::encode(['results' => []]);
-//            }
-//            $cache = Json::encode($results);
-//            Podium::getInstance()->podiumCache->setElement('members.fieldlist', $query, $cache);
-//        }
-//        return $cache;
-//    }
+    /**
+     * Returns list of most active users.
+     * @param string $query
+     * @return array
+     * @since 0.2
+     */
+    public static function getActiveUsers($query = null)
+    {
+
+        $cache = Podium::getInstance()->podiumCache->getElement('users.activelist', $query);
+        if ($cache === false) {
+            $activeUsers = static::findBySql('
+                SELECT u.*
+                FROM forum.podium_user u
+                INNER JOIN forum.podium_post p ON p.author_id = u.id
+                GROUP BY u.id
+                ORDER BY count(*) DESC
+            ')->all();
+
+            $cache = Json::encode($activeUsers);
+            Podium::getInstance()->podiumCache->setElement('users.activelist', $query, $cache);
+        }
+        return Json::decode($cache);
+    }
 
     /**
      * Updates ignore status for the user.
